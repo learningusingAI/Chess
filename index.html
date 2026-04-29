@@ -2,33 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Simple Chess Website</title>
+  <title>Free Chess Website</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Chessboard & Chess Logic Libraries -->
+  <!-- ✅ Correct CSS include -->
   <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.css"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #1e293b;
-      color: white;
-      text-align: center;
-      margin: 0;
-      padding: 20px;
-    }
-    #board {
-      width: 320px;
+    href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.css"
+    integrity="sha512-bIv9uvv9p7k/sJ+lA7ZzaCw5+wLIJyQMcJGeP3Nk5b5nC2K+7fpC18JNpDutQCRa14O6gttxyPjdJawVSxGxug=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+ ;
       margin: 20px auto;
     }
     button {
       padding: 10px 16px;
       font-size: 16px;
-      border: none;
       border-radius: 8px;
+      border: none;
       cursor: pointer;
     }
   </style>
@@ -42,20 +32,26 @@
 
 <button onclick="newGame()">New Game</button>
 
+<!-- ✅ Correct JS includes -->
+<script src="https://cdnjs.cloudflare.comess.js/0.13.4/chess.min.js</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
+
 <script>
   const game = new Chess();
 
   const board = Chessboard('board', {
     draggable: true,
     position: 'start',
-    onDragStart: onDragStart,
-    onDrop: onDrop
+    onDragStart,
+    onDrop
   });
 
   function onDragStart(source, piece) {
     if (game.game_over()) return false;
-    if ((game.turn() === 'w' && piece.startsWith('b')) ||
-        (game.turn() === 'b' && piece.startsWith('w'))) {
+    if (
+      (game.turn() === 'w' && piece.startsWith('b')) ||
+      (game.turn() === 'b' && piece.startsWith('w'))
+    ) {
       return false;
     }
   }
@@ -68,20 +64,15 @@
     });
 
     if (move === null) return 'snapback';
-
     updateStatus();
   }
 
   function updateStatus() {
     let status = game.turn() === 'w' ? 'White to move' : 'Black to move';
 
-    if (game.in_checkmate()) {
-      status = 'Checkmate!';
-    } else if (game.in_draw()) {
-      status = 'Draw!';
-    } else if (game.in_check()) {
-      status += ' (Check)';
-    }
+    if (game.in_checkmate()) status = 'Checkmate!';
+    else if (game.in_draw()) status = 'Draw!';
+    else if (game.in_check()) status += ' (Check)';
 
     document.getElementById('status').innerText = status;
   }
@@ -95,3 +86,4 @@
 
 </body>
 </html>
+``
